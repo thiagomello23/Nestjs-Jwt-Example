@@ -18,7 +18,10 @@ export class AuthenticationGuard implements CanActivate {
         
         const token = request.headers.authorization;
 
-        const role = this.reflector.get<string>(ROLE, context.getHandler())
+        const role = this.reflector.getAllAndOverride(ROLE, [
+            context.getHandler(),
+            context.getClass()
+        ])
 
         if(role === "public") {
             return true;
