@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { AuthenticationGuard } from 'src/config/guards/authentication.guard';
 import { Request } from "express"
+import { Role } from 'src/config/decorators/role.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -26,6 +27,7 @@ export class AuthController {
     }
 
     @Post("/login")
+    @Role("public")
     login(
         @Body() loginDto: LoginDto
     ): Promise<Token> {
@@ -33,7 +35,7 @@ export class AuthController {
     }
 
     @Get("validate")
-    @UseGuards(AuthenticationGuard)
+    @Role("public")
     validate(
         @Req() request: Request
     ) {
