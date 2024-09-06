@@ -1,5 +1,6 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { PrismaService } from 'src/config/prisma.service';
+import { Body, Controller, Post, UsePipes } from '@nestjs/common';
+import { ValidationPipe } from 'src/config/pipes/validation.pipe';
+import { PrismaService } from 'src/config/prisma/prisma.service';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UsersService } from 'src/users/users.service';
 
