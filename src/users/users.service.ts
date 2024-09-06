@@ -33,7 +33,8 @@ export class UsersService {
                 name: user.name,
                 email: user.email,
                 cellphone: user.cellphone,
-                password: hashPass
+                password: hashPass,
+                role: 'USER'
             }
         })
     }
