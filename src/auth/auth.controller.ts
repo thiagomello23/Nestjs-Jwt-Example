@@ -20,6 +20,7 @@ export class AuthController {
     ){}
 
     @Post()
+    @Role("admin")
     createUser(
         @Body() user: CreateUserDto
     ): Promise<User> {
