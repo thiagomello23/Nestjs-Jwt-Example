@@ -25,7 +25,7 @@ export class AuthenticationGuard implements CanActivate {
             context.getClass()
         ])
 
-        if(role === "public" && !token) {
+        if(role === "PUBLIC") {
             return true;
         }
 
@@ -43,11 +43,16 @@ export class AuthenticationGuard implements CanActivate {
                 }
             })
 
-            if(uData.role !== role && role !== "public") {
+            request['user'] = uData;
+
+            if(uData.role == "ADMIN") {
+                return true;
+            }
+
+            if(uData.role !== role) {
                 throw new UnauthorizedException("Usuário não autorizado")
             }
 
-            request['user'] = uData;
         } catch {
             throw new UnauthorizedException("Usuário não autorizado")
         }

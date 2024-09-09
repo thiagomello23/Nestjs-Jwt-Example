@@ -20,7 +20,7 @@ export class AuthController {
     ){}
 
     @Post()
-    @Role("admin")
+    @Role("ADMIN")
     createUser(
         @Body() user: CreateUserDto
     ): Promise<User> {
@@ -28,7 +28,7 @@ export class AuthController {
     }
 
     @Post("/login")
-    @Role("public")
+    @Role("PUBLIC")
     login(
         @Body() loginDto: LoginDto
     ): Promise<Token> {
@@ -36,7 +36,7 @@ export class AuthController {
     }
 
     @Get("validate")
-    @Role("public")
+    @Role("USER")
     validate(
         @Req() request: Request
     ) {
